@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExcelTab - In-Browser Spreadsheet Viewer</title>
+  <link rel="stylesheet" href="viewer.css">
+  <script src="xlsx.mini.js"></script>
+  <script src="xlsx-format.js"></script>
+</head>
+<body>
+  <div id="app" class="viewer-container">
+    <!-- Top Bar Toolbar -->
+    <header class="top-nav">
+      <div class="nav-left">
+        <div class="logo" title="ExcelTab Pro Spreadsheet Viewer">
+          <img class="logo-icon" src="icons/logo.svg" alt="" width="22" height="22">
+          <span class="logo-title">ExcelTab</span>
+          <span class="pro-badge">PRO</span>
+        </div>
+        <div class="divider"></div>
+        <div class="file-info">
+          <span class="file-icon">📄</span>
+          <span id="fileName" class="file-name">Loading spreadsheet...</span>
+          <span id="fileBadge" class="file-badge">.XLSX</span>
+          <span id="sheetMeta" class="sheet-meta"></span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Find in sheet (Ctrl+F)..." aria-label="Search sheet" />
+          <span id="searchCount" class="search-count"></span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="zoom-controls">
+          <button id="btnZoomOut" class="btn btn-icon" title="Zoom Out (Ctrl+-)">-</button>
+          <span id="zoomLevel" class="zoom-text">100%</span>
+          <button id="btnZoomIn" class="btn btn-icon" title="Zoom In (Ctrl++)">+</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="action-buttons">
+          <button id="btnExportCsv" class="btn btn-secondary" title="Export active sheet as CSV">
+            <span class="btn-icon-text">📄</span> Export CSV
+          </button>
+          <button id="btnPrint" class="btn btn-secondary" title="Print spreadsheet layout">
+            <span class="btn-icon-text">🖨️</span> Print
+          </button>
+          <button id="btnDownloadOriginal" class="btn btn-primary" title="Download file to computer">
+            <span class="btn-icon-text">⬇️</span> Download File
+          </button>
+          <button id="btnAbout" class="btn btn-secondary" title="About ExcelTab & Beacon IT Team">
+            <span class="btn-icon-text">ℹ️</span> About
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Formula Bar -->
+    <div class="formula-bar">
+      <div id="cellAddress" class="cell-address" title="Selected Cell Coordinate">A1</div>
+      <div class="formula-icon-badge" title="Formula Field">fx</div>
+      <input type="text" id="cellFormula" class="formula-input" readonly placeholder="Cell value or formula..." aria-label="Cell formula" />
+      <div id="statsSummary" class="stats-summary"></div>
+    </div>
+
+    <!-- Main Spreadsheet Grid Viewport -->
+    <main class="grid-viewport" id="gridContainer">
+      <div id="loadingOverlay" class="loading-state">
+        <div class="spinner"></div>
+        <p id="loadingStatusText">Parsing spreadsheet data...</p>
+      </div>
+      <table id="spreadsheetTable" class="spreadsheet-table">
+        <thead id="gridHeader"></thead>
+        <tbody id="gridBody"></tbody>
+      </table>
+    </main>
+
+    <!-- Bottom Sheet Tabs Bar & Status Bar -->
+    <footer class="sheet-tabs-bar">
+      <div class="tabs-wrapper">
+        <div class="sheet-tabs-scroll" id="sheetTabsContainer"></div>
+      </div>
+      <div class="status-right" id="rangeStats">
+        <span class="status-indicator"><span class="dot">●</span> Ready</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- About Modal Overlay -->
+  <div id="aboutModal" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal-card">
+      <button id="btnCloseAboutModal" class="modal-close-btn" title="Close About dialog">&times;</button>
+      <div class="modal-header">
+        <div class="modal-logo-badge"><img src="icons/logo.svg" alt="ExcelTab Pro logo"></div>
+        <div>
+          <h2 class="modal-title">ExcelTab Pro</h2>
+          <div class="modal-beacon-tag">Developed by Beacon IT Team</div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          An interactive, zero-download spreadsheet & PDF viewer extension designed for instant previewing of spreadsheets (.xlsx, .xls, .csv, .ods) and documents.
+        </p>
+        <div class="modal-grid">
+          <div class="modal-grid-item">
+            <span class="mg-icon">⚡</span>
+            <div>
+              <strong>Instant View</strong>
+              <span>No hard drive clutter</span>
+            </div>
+          </div>
+          <div class="modal-grid-item">
+            <span class="mg-icon">🛡️</span>
+            <div>
+              <strong>100% Private</strong>
+              <span>Local browser parsing</span>
+            </div>
+          </div>
+          <div class="modal-grid-item">
+            <span class="mg-icon">🎨</span>
+            <div>
+              <strong>Rich Styles</strong>
+              <span>Preserves colors & fonts</span>
+            </div>
+          </div>
+          <div class="modal-grid-item">
+            <span class="mg-icon">📊</span>
+            <div>
+              <strong>Smart Grid</strong>
+              <span>Formula bar, stats & search</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-team-box">
+          <span class="mt-icon">💻</span>
+          <div class="mt-info">
+            <strong>Beacon IT Team</strong>
+            <span>Created with care for seamless browser workflow</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btnOpenAboutPage" class="btn btn-secondary">
+          <span class="btn-icon-text">↗️</span> Open Full Page
+        </button>
+        <button id="btnCloseAboutModalBtn" class="btn btn-primary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="viewer.js"></script>
+</body>
+</html>

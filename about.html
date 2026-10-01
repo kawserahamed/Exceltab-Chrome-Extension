@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About ExcelTab - Beacon IT Team</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .about-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 580px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      overflow: hidden;
+    }
+    .about-header {
+      background: linear-gradient(135deg, #0f9d58 0%, #059669 100%);
+      color: #ffffff;
+      padding: 32px 28px;
+      text-align: center;
+      position: relative;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      font-size: 32px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .about-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .about-tagline {
+      font-size: 13px;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+    .beacon-badge {
+      display: inline-block;
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .about-body {
+      padding: 28px;
+    }
+    .section {
+      margin-bottom: 24px;
+    }
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    .description {
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.6;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #1e293b;
+    }
+    .feature-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .feature-text strong {
+      display: block;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .feature-text span {
+      color: #64748b;
+      font-size: 11px;
+    }
+    .credits-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .credits-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .credits-icon {
+      font-size: 24px;
+    }
+    .credits-info strong {
+      display: block;
+      color: #047857;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .credits-info span {
+      color: #059669;
+      font-size: 12px;
+    }
+    .about-footer {
+      border-top: 1px solid #e2e8f0;
+      padding: 16px 28px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .btn-close {
+      background: #10b981;
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .btn-close:hover {
+      background: #059669;
+    }
+  </style>
+</head>
+<body>
+  <div class="about-card">
+    <div class="about-header">
+      <div class="logo-badge"><img src="icons/logo.svg" alt="ExcelTab" width="44" height="44"></div>
+      <h1 class="about-title">ExcelTab</h1>
+      <p class="about-tagline">In-Browser Spreadsheet & PDF Viewer Extension</p>
+      <div class="beacon-badge">Developed by Beacon IT Team</div>
+    </div>
+
+    <div class="about-body">
+      <div class="section">
+        <div class="section-label">Overview</div>
+        <p class="description">
+          ExcelTab is a high-speed, privacy-first browser extension that intercepts spreadsheet and document download links (.xlsx, .xls, .csv, .ods, .tsv, .pdf) and opens them directly in an interactive browser viewer tab without writing files to your hard drive.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Key Capabilities</div>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <span class="feature-icon">⚡</span>
+            <div class="feature-text">
+              <strong>Zero-Download Flow</strong>
+              <span>Instant inline browser preview</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔒</span>
+            <div class="feature-text">
+              <strong>100% Local & Private</strong>
+              <span>Processed inside browser memory</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🎨</span>
+            <div class="feature-text">
+              <strong>Style Preservation</strong>
+              <span>Retains colors, fonts & grid styling</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔍</span>
+            <div class="feature-text">
+              <strong>Interactive Grid</strong>
+              <span>Search, zoom, formula bar & stats</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Developer Credits</div>
+        <div class="credits-box">
+          <div class="credits-left">
+            <span class="credits-icon"></span>
+            <div class="credits-info">
+              <strong>Beacon IT Team</strong>
+              <span>Engineering & Product Development</span>
+            </div>
+          </div>
+          <span style="font-size: 11px; font-weight: 700; color: #047857; background: #ffffff; padding: 4px 10px; border-radius: 12px; border: 1px solid #a7f3d0;">v1.0.0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-footer">
+      <span>© Beacon IT Team. All rights reserved.</span>
+      <button class="btn-close" onclick="window.close()">Close Page</button>
+    </div>
+  </div>
+</body>
+</html>

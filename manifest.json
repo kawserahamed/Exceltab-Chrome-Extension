@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "ExcelTab - In-Browser Spreadsheet & PDF Viewer",
+  "version": "1.0.0",
+  "description": "Intercepts .xlsx, .xls, .csv, and .pdf download links and opens them directly in an interactive browser tab without downloading to your computer.",
+  "permissions": [
+    "downloads",
+    "webNavigation",
+    "storage",
+    "unlimitedStorage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ExcelTab - Spreadsheet Viewer Settings",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "viewer.html",
+        "viewer.js",
+        "about.html",
+        "xlsx.mini.js",
+        "xlsx-format.js",
+        "icons/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
